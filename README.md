@@ -79,8 +79,8 @@ DB_PASSWORD=password
 11. パッケージをインストール
     - `npm install`
 12. マイグレーションを実行しテーブルを作成
-    - `./vender/bin/sail artisan migrate`
+    - `./vendor/bin/sail artisan migrate`
 13. シーディングを実行しレコードを作成
-    - `./vender/bin/sail artisan db:seed --class=SimpleDataSetSeeder`
+    - `./vendor/bin/sail artisan db:seed --class=SimpleDataSetSeeder`
 14. 「 http://localhost/login 」にアクセスし、Employee No→「99999」、Password→「password」でログインを確認する
 
