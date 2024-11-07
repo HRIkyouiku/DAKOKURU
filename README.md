@@ -24,14 +24,12 @@
 # 環境構築手順
 
 1. ローカルにDAKOKURUリポジトリをloneする
-    - `git clone https://github.com/tarou-yamada/DAKOKURU-fork.git`（例）
+    - `git clone https://github.com/tarou-yamada/DAKOKURU-fork.git`（ディレクトリ名は例）
 2. cdコマンドで、cloneしたlaravelのルートディレクトに移動する
-    - `cd ~/DAKOKURU-fork/` （例）
-3. composerをinstall
-    - `composer install`
-4. .env.exampleをコピーし、.envファイルを作成する
+    - `cd ~/DAKOKURU-fork/`（ディレクトリ名は例）
+3. .env.exampleをコピーし、.envファイルを作成する
     - `cp .env.example .env `
-5. .envの内容を以下のように変更する
+4. .envの内容を以下のように変更する
     - `vi .env`
 
 修正前
@@ -56,31 +54,33 @@ DB_USERNAME=sail
 DB_PASSWORD=password
 ```
 
-6. laravelのルートディレクトリにてコンテナを立ち上げる
+5. laravelのルートディレクトリにてコンテナを立ち上げる
     - `./vendor/bin/sail up -d`
-
-7. 以下の4つのコンテナが立ち上がったことを確認する
+6. 以下の4つのコンテナが立ち上がったことを確認する
     - `./vendor/bin/sail ps`
         - kks-laravel.test-1
         - kks-mysql-1
         - kks-phpmyadmin-1
         - kks-mailpit-1
-
-8. アプリケーションキーの作成
+7. アプリケーションキーの作成
     - `./vendor/bin/sail artisan key:generate`
-9. LaravelBreezeの有効化
+8. コンテナの中に入る
+    - `./vendor/bin/sail bash` もしくは `./vendor/bin/sail shell`
+9. LaravelBreezeの有効化（コンテナ内で実行）
     - `composer require laravel/breeze --dev`
-10. LaravelBreezeをインストールする
+10. コンテナから出る
+    - `exit;`
+11. LaravelBreezeをインストールする
     - `./vendor/bin/sail artisan breeze:install`
     - インストール中に聞かれる質問にはそれぞれ以下のように入力しEnter
         - `Which stack would you like to install?` → blade
         - `Would you like to install dark mode support?` → no
         - `Would you prefer Pest tests instead of PHPUnit?` → no
-11. パッケージをインストール
+12. パッケージをインストール
     - `npm install`
-12. マイグレーションを実行しテーブルを作成
+13. マイグレーションを実行しテーブルを作成
     - `./vendor/bin/sail artisan migrate`
-13. シーディングを実行しレコードを作成
+14. シーディングを実行しレコードを作成
     - `./vendor/bin/sail artisan db:seed --class=SimpleDataSetSeeder`
-14. 「 http://localhost/login 」にアクセスし、Employee No→「99999」、Password→「password」でログインを確認する
+15. 「 http://localhost/login 」にアクセスし、Employee No→「99999」、Password→「password」でログインを確認する
 
